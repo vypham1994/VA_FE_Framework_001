@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Demo 03</h1>
+    <button>Convert</button>
+
+    <div>
+        <select class="fromCur"></select>
+        <select class="toCur"></select>
+    </div>
+
+    <div class="result"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('button').click(function(){
+                let apiURL = "https://free.currconv.com/api/v7/currencies?apiKey=b6cb206860cc790db3cc";
+                
+                $.get(apiURL, function(data, status){
+                    var curID = Object.keys(data.results);
+                    console.log(curID);
+                    curID.forEach(function(item){
+                        $(".fromCur").append(`<option value='${item}'>${item}</option>`);
+                        $(".toCur").append(`<option value='${item}'>${item}</option>`);
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
